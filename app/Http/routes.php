@@ -31,3 +31,9 @@ Route::get('auth/logout', [
     'uses' => 'AuthController@logout',
     'as' => 'auth.logout'
 ]);
+
+/*
+ * Add new route resources
+ */
+
+Route::resource('projects', 'ProjectController');
