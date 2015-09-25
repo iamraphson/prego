@@ -15,7 +15,7 @@ class ProjectController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $projects = Project::all();
+        $projects = Project::personal()->get();
 
         return view('projects.index')->with('project',$projects);
     }

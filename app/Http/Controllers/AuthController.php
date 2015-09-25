@@ -43,7 +43,7 @@ class AuthController extends Controller{
         if(!$authStatus){
             return redirect()->back()->with('error', 'Invalid Email  and Password');
         }
-        return redirect()->route('index');
+        return redirect()->route('projects.index')->with('info', 'You are now signed in');
     }
 
     public function logout(){

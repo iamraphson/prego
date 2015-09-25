@@ -2,7 +2,9 @@
 
 namespace Prego;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
+
 
 class Project extends Model{
     /**
@@ -11,4 +13,9 @@ class Project extends Model{
      * @var string
      */
     protected $table = 'prego_projects';
+
+
+    public function scopePersonal($query){
+        return $query->where('user_id', Auth::user()->id);
+    }
 }
