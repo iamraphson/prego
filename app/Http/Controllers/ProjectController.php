@@ -62,9 +62,9 @@ class ProjectController extends Controller{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($id){
+        $project = Project::find($id);
+        return view('projects.show')->with('project', $project);
     }
 
     /**
