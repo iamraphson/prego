@@ -14,6 +14,8 @@ class Project extends Model{
      */
     protected $table = 'prego_projects';
 
+    //protected $fillable = ["project_name", ]
+
 
     public function scopePersonal($query){
         return $query->where('user_id', Auth::user()->id);

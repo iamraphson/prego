@@ -33,7 +33,37 @@ Route::get('auth/logout', [
 ]);
 
 /*
- * Add new route resources
+ * Add new route resources for project
  */
 
 Route::resource('projects', 'ProjectController');
+
+/*
+ * tasks routes
+ */
+Route::post('projects/{projects}/tasks', [
+    'uses' => 'ProjectTasksController@postNewTask',
+    'as' => 'projects.tasks.create'
+]);
+
+Route::get('projects/{projects}/tasks/{tasks}/edit', [
+    'uses' => 'ProjectTasksController@getOneProjectTask',
+    'as' => 'projects.tasks'
+]);
+
+Route::put('projects/{projects}/tasks/{tasks}', [
+    'uses' => 'ProjectTasksController@updateOneProjectTask'
+]);
+
+Route::delete('projects/{projects}/tasks/{tasks}',[
+    'uses' => 'ProjectTasksController@deleteOneProjectTask'
+]);
+
+/*
+ * files routes
+ */
+Route::post('projects/{projects}/files',[
+   'uses' => 'FilesController@uploadAttachments',
+   'middleware' => ['auth'],
+   'as' => 'projects.files'
+]);
