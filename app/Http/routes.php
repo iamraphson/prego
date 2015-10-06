@@ -67,3 +67,8 @@ Route::post('projects/{projects}/files',[
    'middleware' => ['auth'],
    'as' => 'projects.files'
 ]);
+
+Route::get('projects/{projects}/files/get/{files}', [
+     'uses' => 'FilesController@getFile',
+     'middleware' => ['auth']
+]);

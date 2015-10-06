@@ -14,7 +14,7 @@
                 <div style="text-overflow: ellipsis;width: 60%;overflow: hidden">
                     <div><i class="fa fa-check-square-o"></i>
                         <span>
-                            <a href="{{ $file->file_url }}" target="_blank">{{ $file->file_name }}</a>
+                            <a href="/projects/{{ $project->id }}/files/get/{{ $file->id }}" target="_blank">{{ $file->file_name }}</a>
                         </span>
                     </div>
                 </div>

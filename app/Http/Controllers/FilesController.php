@@ -4,6 +4,8 @@ namespace Prego\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\Util\MimeType;
 use Prego\Files;
@@ -45,6 +47,15 @@ class FilesController extends Controller{
         $file = Files::findOrFail($id);
         $file->file_url = $fileUrl;
         $file->save();
+    }
+
+    public function getFile($projectId, $fileId){
+        $fileObject = Files::where('project_id', $projectId)->where('id', $fileId)->first();
+        $file = Storage::get($fileObject->file_url);
+
+        $mimetype = Storage::mimeType($fileObject->file_url);
+
+        return response($file, 200)->header('Content-Type', $mimetype);
     }
 
 }
