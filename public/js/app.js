@@ -8,6 +8,7 @@ $(document).ready(function() {
             return false;
         }
         var action = $(this).data("action");
+        var returnAction = $(this).data("return");
         //var parent = $(this).parent();
         var token  = $(this).data("token");
         //var
@@ -19,7 +20,7 @@ $(document).ready(function() {
                 alert(msg);
             },
             success: function() {
-                window.location.href = '/projects'
+                window.location.href = returnAction;
             }
         });
     });

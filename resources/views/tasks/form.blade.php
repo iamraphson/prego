@@ -17,6 +17,7 @@
                         <a href="/projects/{{ $project->id }}/tasks/{{ $task->id }}/edit">Edit</a>
                         <button class="btn btn-danger delete pull-right"
                                 data-action="/projects/{{ $project->id }}/tasks/{{ $task->id }}"
+                                data-return="{{ url('projects/' . $project->id ) }}"
                                 data-token="{{csrf_token()}}">
                             <i class="fa fa-trash-o"></i>Delete
                         </button>

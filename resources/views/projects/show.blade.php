@@ -30,6 +30,7 @@
                         <p>
                             <button class="btn btn-circle btn-danger delete"
                                     data-action="{{ url('projects/' . $project->id) }}"
+                                    data-return="{{ url('projects') }}"
                                     data-token="{{csrf_token()}}">
                                 <i class="fa fa-trash-o"></i>Delete
                             </button>

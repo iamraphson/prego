@@ -11,14 +11,19 @@
     <div class="row" style="border:1px solid #ccc;margin-left:5px;width:100%;padding:15px;">
         @if( $files)
             @foreach( $files as $file)
-                <div style="text-overflow: ellipsis;width: 60%;overflow: hidden">
-                    <div><i class="fa fa-check-square-o"></i>
+                <div style="width: 100%;overflow: hidden; clear: both;margin-bottom: 15px;">
+                    <div style="text-overflow: ellipsis;width: 60%;overflow: hidden" class="pull-left"><i class="fa fa-check-square-o"></i>
                         <span>
                             <a href="/projects/{{ $project->id }}/files/get/{{ $file->id }}" target="_blank">{{ $file->file_name }}</a>
                         </span>
                     </div>
+                    <button class="btn btn-danger delete pull-right"
+                            data-action="/projects/{{ $project->id }}/files/{{ $file->id }}"
+                            data-return="{{ url('projects/' . $project->id ) }}"
+                            data-token="{{csrf_token()}}">
+                        <i class="fa fa-trash-o"></i>Delete
+                    </button>
                 </div>
-                <hr/>
             @endforeach
         @endif
         <form class="form-vertical"  role="form" method="post" action="{{ route('projects.files', ['projects' => $project->id]) }}" enctype="multipart/form-data">

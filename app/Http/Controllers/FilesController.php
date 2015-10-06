@@ -2,6 +2,7 @@
 
 namespace Prego\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
@@ -28,8 +29,6 @@ class FilesController extends Controller{
         Storage::put($projectId . '/' . $fileName,  File::get($file));
 
         $this->saveFileUrl($fileObject->id, $projectId . '/' . $fileName);
-
-        //MimeType::detectByFileExtension($request->file('file_name')->getClientOriginalExtension());
         return redirect()->back()->with('info', 'Your Attachment has been uploaded Successfully');
 
     }
@@ -53,9 +52,19 @@ class FilesController extends Controller{
         $fileObject = Files::where('project_id', $projectId)->where('id', $fileId)->first();
         $file = Storage::get($fileObject->file_url);
 
-        $mimetype = Storage::mimeType($fileObject->file_url);
+        $mimeType = Storage::mimeType($fileObject->file_url);
 
-        return response($file, 200)->header('Content-Type', $mimetype);
+        return response($file, 200)->header('Content-Type', $mimeType);
+    }
+
+    public function deleteOneProjectFile($projectId, $fileId){
+        $fileObject = Files::where('project_id', $projectId)->where('id', $fileId)->first();
+        Storage::delete($fileObject->file_url);
+
+        DB::table('prego_files')
+            ->where('project_id', $projectId)
+            ->where('id', $fileId)
+            ->delete();
     }
 
 }

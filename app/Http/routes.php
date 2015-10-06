@@ -72,3 +72,7 @@ Route::get('projects/{projects}/files/get/{files}', [
      'uses' => 'FilesController@getFile',
      'middleware' => ['auth']
 ]);
+
+Route::delete('projects/{projects}/files/{files}', [
+    'uses' => 'FilesController@deleteOneProjectFile'
+]);
