@@ -33,6 +33,20 @@ Route::get('auth/logout', [
 ]);
 
 /*
+ * Edit account route
+ */
+Route::get('account/edit', [
+    'uses' => 'accountController@edit',
+    'middleware' => ['auth'],
+    'as' => 'account.edit'
+]);
+
+Route::put('account/edit', [
+    'uses' => 'accountController@update',
+    'middleware' => ['auth']
+]);
+
+/*
  * Add new route resources for project
  */
 
